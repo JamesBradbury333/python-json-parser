@@ -6,6 +6,8 @@ name = "pypi"
 [scripts]
 format = "black ."
 lint = "flake8 -vv"
+lexer = "python src/lexer.py"
+tests = "pytest tests -vv"
 
 [packages]
 pytest = "*"
