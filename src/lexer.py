@@ -12,28 +12,27 @@ def main():
 
 
 class JsonTokenType(Enum):
-    TOKEN_END_OF_STREAM = "end_of_stream"
-    TOKEN_ERROR = "error"
+    # EOF Token
+    TOKEN_END_OF_FILE = "EOF"
+    # Illegal unknown character
+    TOKEN_ILLEGAL = "Illegal Character"
 
+    # Structural Characters in JSON
     TOKEN_OPEN_OBJECT = "open_object"
     TOKEN_CLOSE_OBJECT = "close_object"
-    TOKEN_OPEN_PAREN = "open_paren"
-    TOKEN_CLOSE_PAREN = "close_paren"
     TOKEN_OPEN_ARRAY = "open_arrray"
     TOKEN_CLOSE_ARRAY = "close_array"
     TOKEN_COMMA = "comma"
     TOKEN_COLON = " colon"
     TOKEN_SEMI_COLON = "semi_colon"
+    TOKEN_DOUBLE_QUOTE = "double_quote"
+
+    # Data Types in Json
     TOKEN_STRING_LITERAL = "string_literal"
-    TOKEN_NUMBER = "number"
-    TOKEN_TRUE = "True"
-    TOKEN_FLASE = "False"
+    TOKEN_NUMBER = "Number"
+    TOKEN_BOOLEAN = "Boolean"
     TOKEN_NULL = "Null"
-
-    TOKEN_DOUBLE_QUOTE = "single_quote"
-    TOKEN_SINGLE_QUOTE = "double_quote"
-
-    TOKEN_COUNT = "token_count"
+    
 
 
 @dataclass
@@ -52,10 +51,6 @@ def tokenize(source_code: str) -> List[Token]:
             tokens.append(Token(JsonTokenType.TOKEN_OPEN_OBJECT, src.pop(0)))
         elif src[0] == "}":
             tokens.append(Token(JsonTokenType.TOKEN_CLOSE_OBJECT, src.pop(0)))
-        elif src[0] == "(":
-            tokens.append(Token(JsonTokenType.TOKEN_OPEN_PAREN, src.pop(0)))
-        elif src[0] == ")":
-            tokens.append(Token(JsonTokenType.TOKEN_CLOSE_PAREN, src.pop(0)))
         elif src[0] == "[":
             tokens.append(Token(JsonTokenType.TOKEN_OPEN_ARRAY, src.pop(0)))
         elif src[0] == "]":
@@ -68,8 +63,6 @@ def tokenize(source_code: str) -> List[Token]:
             tokens.append(Token(JsonTokenType.TOKEN_SEMI_COLON, src.pop(0)))
         elif src[0] == '"':
             tokens.append(Token(JsonTokenType.TOKEN_DOUBLE_QUOTE, src.pop(0)))
-        elif src[0] == "'":
-            tokens.append(Token(JsonTokenType.TOKEN_SINGLE_QUOTE, src.pop(0)))
 
         elif src[0].isalpha():
             ident = ""
