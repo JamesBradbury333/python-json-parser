@@ -24,4 +24,4 @@ jobs:
         pipenv install
     - name: Lint python code
       run: |
-        flake8 $(git ls-files '*.py')
+        pipenv run lint
