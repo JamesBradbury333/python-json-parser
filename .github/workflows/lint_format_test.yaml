@@ -22,12 +22,12 @@ jobs:
     - name: Install Dependencies
       run: |
         pipenv install
-    #- name: Lint python code
-    #  run: |
-    #    pipenv run lint
-    #- name: Format python code
-    #  run: |
-    #    pipenv run format
+    - name: Lint python code
+      run: |
+        pipenv run lint
+    - name: Format python code
+      run: |
+        pipenv run format
     - name: Run tests
       run: |
         pipenv run tests
