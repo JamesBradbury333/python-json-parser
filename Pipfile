@@ -11,6 +11,7 @@ tests = "python -m pytest tests -vv"
 
 [packages]
 pytest = "*"
+flake8 = "*"
 
 [dev-packages]
 
